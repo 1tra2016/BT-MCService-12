@@ -7,6 +7,7 @@ import com.example.demo.mapper.ProductMapper;
 import com.example.demo.repository.ProductRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,10 +51,11 @@ public class ProductService {
         return mapper.toResponseDTO(saved);
     }
 
-    @Transactional(readOnly = true)
+    @Cacheable(value = "products", key = "#id")
     public ProductResponseDTO getById(Integer id) {
         Product product = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
+        System.out.println("read db");
         return mapper.toResponseDTO(product);
     }
 
@@ -66,4 +68,5 @@ public class ProductService {
                 )
         );
     }
+
 }

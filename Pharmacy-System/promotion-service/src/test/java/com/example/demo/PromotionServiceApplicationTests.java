@@ -1,10 +1,10 @@
-package com.example.demorediscache;
+package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoRedisCacheApplicationTests {
+class PromotionServiceApplicationTests {
 
     @Test
     void contextLoads() {

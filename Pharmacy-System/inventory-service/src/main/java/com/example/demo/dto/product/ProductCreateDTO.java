@@ -10,4 +10,6 @@ import lombok.*;
 public class ProductCreateDTO {
     private String name;
     private Integer stock;
+    private Double price;
+    private Integer discount =0;
 }
