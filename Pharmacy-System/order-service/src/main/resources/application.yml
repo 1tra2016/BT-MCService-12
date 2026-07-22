@@ -1,0 +1,43 @@
+logging:
+    level:
+        com:
+            medical:
+                service: TRACE
+        org:
+            hibernate:
+                SQL: DEBUG
+                type:
+                    descriptor:
+                        sql: TRACE
+        root: INFO
+server:
+    port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    instance-id: localhost:${server.port}
+spring:
+    datasource:
+      url: jdbc:postgresql://localhost:5432/demo_db
+      username: postgres
+      password: 12345
+      driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: update
+    application:
+        name: order-service
+    kafka:
+      bootstrap-servers: localhost:9092
+      listener:
+        missing-topics-fatal: false
+
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
